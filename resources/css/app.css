@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Poppins";
+    src: url("./Poppins.ttf");
+}
+
+.bg-green{
+    background-color: #9BD795;
+}
+
+.filter-white{
+    filter: invert(100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
