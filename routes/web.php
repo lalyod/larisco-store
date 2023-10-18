@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ProductController;
@@ -23,9 +24,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, "home"])->name("home");
 
 Route::prefix("carts")->group(function (){
-    Route::get("/", [TransactionController::class, "index"])->name("carts.index");
+    Route::get("/", [CartController::class, "index"])->name("carts.index");
 
-    Route::put("/{transaction}", [TransactionController::class, "update"])->name("carts.update");
+    Route::put("/{cart}", [CartController::class, "update"])->name("carts.update");
+    Route::post("/{product}/products", [CartController::class, "store"])->name("carts.store");
 });
 
 Route::prefix("auth")->group(function () {
@@ -53,8 +55,5 @@ Route::prefix('admin')->group(function () {
 
         Route::post("/", [ProductController::class, "store"])->name("admin.products.store");
         Route::put("/{product}", [ProductController::class, "update"])->name("admin.products.update");
-    });
-    Route::prefix("transaction")->group(function () {
-        Route::post("/{product}/products", [TransactionController::class, "store"])->name("transaction.store");
     });
 });
