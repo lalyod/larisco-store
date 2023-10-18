@@ -3,13 +3,13 @@
 @section('content')
     <div class="mx-10 mt-8">
         <x-search-bar link="" placeholder="Cari" />
-        <div class="mt-4">
+        <div class="my-4">
             <div class="flex gap-8">
                 <x-home.category-filter :categories=$categories />
             </div>
         </div>
         @if ($errors->any())
-            {{ $errors }}
+            <x-alert.error text="{!! $errors !!}" />
         @endif
         <div class="mt-10">
             <h3 class="font-bold text-2xl ">Semua Produk</h3>
