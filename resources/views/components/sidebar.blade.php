@@ -30,15 +30,28 @@
                         <span class="{{ $title == 'settings' ? 'text-green' : '' }}">Pengaturan</span>
                     </a>
                 </li>
-                <li>
-                    <a href="" class="flex items-center gap-4 mt-5">
-                        <div class="p-3 rounded-lg {{ $title == 'log-out' ? 'bg-green' : 'bg-white' }} shadow">
-                            <img src="{{ asset('/img/exit.svg') }}" alt=""
-                                class="{{ $title == 'log-out' ? 'filter-white' : '' }}">
-                        </div>
-                        <span class="{{ $title == 'log-out' ? 'text-green' : '' }}">Logout</span>
-                    </a>
-                </li>
+                @auth
+                    <li>
+                        <a href="" class="flex items-center gap-4 mt-5">
+                            <div class="p-3 rounded-lg {{ $title == 'log-out' ? 'bg-green' : 'bg-white' }} shadow">
+                                <img src="{{ asset('/img/exit.svg') }}" alt=""
+                                    class="{{ $title == 'log-out' ? 'filter-white' : '' }}">
+                            </div>
+                            <span class="{{ $title == 'log-out' ? 'text-green' : '' }}">Logout</span>
+                        </a>
+                    </li>
+                @endauth
+                @guest
+                    <li>
+                        <a href="{{ route('auth.login.page') }}" class="flex items-center gap-4 mt-5">
+                            <div class="p-3 rounded-lg {{ $title == 'login' ? 'bg-green' : 'bg-white' }} shadow">
+                                <img src="{{ asset('/img/exit.svg') }}" alt=""
+                                    class="{{ $title == 'login' ? 'filter-white' : '' }}">
+                            </div>
+                            <span class="{{ $title == 'login' ? 'text-green' : '' }}">Login</span>
+                        </a>
+                    </li>
+                @endguest
             </ul>
         </nav>
     </div>
