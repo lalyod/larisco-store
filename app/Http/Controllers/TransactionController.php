@@ -18,17 +18,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        if (!Gate::check('is-user')) return redirect()->back()->withErrors("Login dulu bro");
         
-        $user = Auth::user();
-        $transactions = Transaction::where("user_id", $user->id)->get();
-        $total = $transactions->sum("total");
-
-        return view("pages.home.cart", [
-            "title" => "cart",
-            "transactions" => $transactions,
-            "subtotal" => $total
-        ]);
     }
 
     /**
@@ -49,25 +39,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request, Product $product)
     {
-        $validator = Validator::make($request->all(), [
-            "quantity" => "required|integer|min:1",
-        ]);
-
-        if ($validator->fails()) return redirect()->back()->withErrors($validator->errors());
-
-        $total = $product->price * $request->quantity;
-        $user = Auth::user();
-
-        $transaction = [
-            "quantity" => $request->quantity,
-            "total" => $total,
-            "product_id" => $product->id,
-            "user_id" => $user->id
-        ];
-
-        Transaction::create($transaction);
-
-        return redirect()->back();
+        
     }
 
     /**
@@ -101,19 +73,7 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        if ($request->has("increase")) {
-            $transaction->quantity += 1;
-            $transaction->total = $transaction->quantity * $transaction->product->price;
-            $transaction->save();
-
-            return redirect()->back()->with('success', 'increased');
-        } else if ($request->has("decrease")) {
-            $transaction->quantity = $transaction->quantity != 1 ? $transaction->quantity - 1 : $transaction->quantity = 1;
-            $transaction->total = $transaction->quantity * $transaction->product->price;
-            $transaction->save();
-
-            return redirect()->back();
-        }
+        
     }
 
     /**
