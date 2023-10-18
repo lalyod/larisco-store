@@ -8,7 +8,7 @@
                     class="w-52 h-52 object-contain">
             </div>
             <form class="mt-10 flex flex-col items-stretch" id="form-{{ $product->id }}"
-                action="{{ route('transaction.store', $product->id) }}" method="POST">
+                action="{{ route('carts.store', $product->id) }}" method="POST">
                 @csrf
                 <div>
                     <h3 class="font-bold text-2xl">{{ $product->name }}</h3>
