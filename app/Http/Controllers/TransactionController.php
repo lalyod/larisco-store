@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class TransactionController extends Controller
@@ -17,13 +18,16 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        if (!Gate::check('is-user')) return redirect()->back()->withErrors("Login dulu bro");
+        
         $user = Auth::user();
         $transactions = Transaction::where("user_id", $user->id)->get();
+        $total = $transactions->sum("total");
 
         return view("pages.home.cart", [
             "title" => "cart",
             "transactions" => $transactions,
-            "subtotal" => $transactions->sum("total")
+            "subtotal" => $total
         ]);
     }
 
@@ -97,13 +101,13 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        if($request->has("increase")){
+        if ($request->has("increase")) {
             $transaction->quantity += 1;
             $transaction->total = $transaction->quantity * $transaction->product->price;
             $transaction->save();
-            
+
             return redirect()->back()->with('success', 'increased');
-        }else if($request->has("decrease")){
+        } else if ($request->has("decrease")) {
             $transaction->quantity = $transaction->quantity != 1 ? $transaction->quantity - 1 : $transaction->quantity = 1;
             $transaction->total = $transaction->quantity * $transaction->product->price;
             $transaction->save();
