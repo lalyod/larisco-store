@@ -1,31 +1,42 @@
-<header style="background-color: #F2FAF1;" class="h-screen w-60 shadow">
+<header style="background-color: #F2FAF1;" class="h-screen w-72 shadow">
     <div class="px-8 pt-10">
         <h3 class="font-bold text-center text-2xl">Pradita</h3>
         <nav class="mt-8">
             <ul class="font-bold flex flex-col gap-5">
                 <li>
-                    <a href="" class="flex gap-4 items-center"><img src="{{ asset('/img/home.svg') }}"
-                            class="bg-green p-3 rounded-lg shadow" alt=""><span>Beranda</span>
+                    <a href="{{ route('home') }}" class="flex items-center gap-4">
+                        <div class="p-3 rounded-lg {{ $title == 'home' ? 'bg-green' : 'bg-white' }} shadow">
+                            <img src="{{ asset('/img/home.svg') }}" alt=""
+                                class="{{ $title == 'home' ? 'filter-white' : '' }}">
+                        </div>
+                        <span class="{{ $title == 'home' ? 'text-green' : '' }}">Beranda</span>
                     </a>
                 </li>
                 <li>
-                    <a href="" class="flex gap-4 items-center"><img src="{{ asset('/img/heart.svg') }}"
-                            class="bg-white p-3 rounded-lg shadow" alt=""><span>Favorit</span>
+                    <a href="{{ route('carts.index') }}" class="flex items-center gap-4">
+                        <div class="p-3 rounded-lg {{ $title == 'cart' ? 'bg-green' : 'bg-white' }} shadow">
+                            <img src="{{ asset('/img/cart.svg') }}" alt=""
+                                class="{{ $title == 'cart' ? 'filter-white' : '' }}">
+                        </div>
+                        <span class="{{ $title == 'cart' ? 'text-green' : '' }}">Keranjang</span>
                     </a>
                 </li>
                 <li>
-                    <a href="" class="flex gap-4 items-center"><img src="{{ asset('/img/cart.svg') }}"
-                            class="bg-white p-3 rounded-lg shadow" alt=""><span>Keranjang</span>
+                    <a href="" class="flex items-center gap-4">
+                        <div class="p-3 rounded-lg {{ $title == 'settings' ? 'bg-green' : 'bg-white' }} shadow">
+                            <img src="{{ asset('/img/gear.svg') }}" alt=""
+                                class="{{ $title == 'settings' ? 'filter-white' : '' }}">
+                        </div>
+                        <span class="{{ $title == 'settings' ? 'text-green' : '' }}">Pengaturan</span>
                     </a>
                 </li>
                 <li>
-                    <a href="" class="flex gap-4 items-center"><img src="{{ asset('/img/gear.svg') }}"
-                            class="bg-white p-3 rounded-lg shadow" alt=""><span>Pengaturan</span>
-                    </a>
-                </li>
-                <li class="mt-10">
-                    <a href="" class="flex gap-4 items-center"><img src="{{ asset('/img/exit.svg') }}"
-                            class="bg-white p-3 rounded-lg shadow" alt=""><span>Logout</span>
+                    <a href="" class="flex items-center gap-4 mt-5">
+                        <div class="p-3 rounded-lg {{ $title == 'log-out' ? 'bg-green' : 'bg-white' }} shadow">
+                            <img src="{{ asset('/img/exit.svg') }}" alt=""
+                                class="{{ $title == 'log-out' ? 'filter-white' : '' }}">
+                        </div>
+                        <span class="{{ $title == 'log-out' ? 'text-green' : '' }}">Logout</span>
                     </a>
                 </li>
             </ul>
