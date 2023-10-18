@@ -7,17 +7,41 @@
     src: url("./Poppins.ttf");
 }
 
-.bg-green{
-    background-color: #9BD795;
+.bg-green {
+    background-color: #9bd795;
 }
 
-.filter-white{
+.text-green {
+    color: #9bd795;
+}
+
+.major-carousel:hover img {
+    transition: 1s;
+    background-color: #9bd795;
+}
+
+.filter-white {
     filter: invert(100%);
+}
+
+.filter-black {
+    filter: brightness(0) invert(1);
+}
+
+.container-admin {
+    max-width: 1100px;
+}
+
+table thead th:first-child {
+    border-radius: 10px 0 0 0;
+}
+table thead th:last-child {
+    border-radius: 0 10px 0 0;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins';
+    font-family: "Poppins";
 }
