@@ -29,7 +29,7 @@
             @endforeach
         </div>
         <div
-            class="bg-white w-full fixed left-0 -z-10 bottom-0 h-50 border right-0 left-72 rounded-lg shadow px-3 py-4" style="width: 75%">
+            class="bg-white fixed p-5 shadow rounded-lg bottom-0" style="width: 73%">
             <div class="flex flex-col gap-2">
                 <div class="flex justify-between">
                     <span>Subtotal</span>
