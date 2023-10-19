@@ -12,7 +12,7 @@
 <body>
     <div class="flex">
         @include('components.sidebar')
-        <div class="w-full">
+        <div class="w-full ml-72">
             @yield('content')
         </div>
     </div>
