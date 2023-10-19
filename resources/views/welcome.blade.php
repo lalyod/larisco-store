@@ -8,9 +8,9 @@
                 <x-home.category-filter :categories=$categories />
             </div>
         </div>
-        @if ($errors->any())
-            <x-alert.error text="{!! $errors !!}" />
-        @endif
+        @foreach ($errors->all() as $error)
+            <x-alert.error text="{{ $error }}" />
+        @endforeach
         <div class="mt-10">
             <h3 class="font-bold text-2xl ">Semua Produk</h3>
             <div class="mt-5 grid gap-10 items-center grid-cols-4">
