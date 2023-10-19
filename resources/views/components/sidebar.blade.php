@@ -1,6 +1,6 @@
-<header style="background-color: #F2FAF1;" class="h-screen w-72 shadow">
+<header style="background-color: #F2FAF1;" class="h-screen fixed z-10 w-72 shadow">
     <div class="px-8 pt-10">
-        <h3 class="font-bold text-center text-2xl">Pradita</h3>
+        <h3 class="font-bold text-center text-2xl">{{ ucfirst(Auth::user()->name) }}</h3>
         <nav class="mt-8">
             <ul class="font-bold flex flex-col gap-5">
                 <li>
@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="flex items-center gap-4">
+                    <a href="{{ route('settings.edit.user') }}" class="flex items-center gap-4">
                         <div class="p-3 rounded-lg {{ $title == 'settings' ? 'bg-green' : 'bg-white' }} shadow">
                             <img src="{{ asset('/img/gear.svg') }}" alt=""
                                 class="{{ $title == 'settings' ? 'filter-white' : '' }}">
@@ -32,7 +32,7 @@
                 </li>
                 @auth
                     <li>
-                        <a href="" class="flex items-center gap-4 mt-5">
+                        <a href="{{ route('auth.logout') }}" class="flex items-center gap-4 mt-5">
                             <div class="p-3 rounded-lg {{ $title == 'log-out' ? 'bg-green' : 'bg-white' }} shadow">
                                 <img src="{{ asset('/img/exit.svg') }}" alt=""
                                     class="{{ $title == 'log-out' ? 'filter-white' : '' }}">
