@@ -23,16 +23,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, "home"])->name("home");
 
-Route::prefix("carts")->group(function (){
+Route::prefix("carts")->group(function () {
     Route::get("/", [CartController::class, "index"])->name("carts.index");
 
     Route::put("/{cart}", [CartController::class, "update"])->name("carts.update");
     Route::post("/{product}/products", [CartController::class, "store"])->name("carts.store");
 });
 
+Route::prefix('settings')->group(function () {
+    Route::get('/', [UserController::class, 'edit'])->name('settings.edit.user');
+});
+
 Route::prefix("auth")->group(function () {
     Route::get('/login', [UserController::class, "login"])->name("auth.login.page");
     Route::get('/register', [UserController::class, 'register'])->name("auth.register.page");
+    Route::get("/logout", [AuthController::class, "logout"])->name('auth.logout');
 
     Route::post("/register", [AuthController::class, "register"])->name("auth.register.store");
     Route::post("/login", [AuthController::class, "login"])->name("auth.login.store");
