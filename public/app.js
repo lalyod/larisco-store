@@ -52,3 +52,32 @@ function formSubmit(id) {
     input.value = quantity.textContent;
     form.submit();
 }
+
+function chooseImage(id) {
+    const file = document.getElementById(id);
+    file.click();
+}
+
+function select(elementId, nextElement, label) {
+    const select = document.getElementById(elementId);
+    const select_nextElement = document.getElementById(nextElement);
+    select_nextElement.innerHTML = "";
+    let index = select.selectedIndex;
+    let value = select.options[index].value;
+    let first_child = document.createElement("option");
+    first_child.label = `Pilih ${label}`;
+    first_child.selected;
+    first_child.disabled;
+    select_nextElement.appendChild(first_child);
+    fetch(`/api/${elementId}/${value}/${nextElement}`)
+        .then((res) => res.json())
+        .then((data) => {
+            data.data.forEach((data) => {
+                let option_element = document.createElement("option");
+                option_element.value = data.id;
+                option_element.label = data.name;
+
+                select_nextElement.appendChild(option_element);
+            });
+        });
+}
