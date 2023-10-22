@@ -21,22 +21,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [MainController::class, "home"])->name("home");
+Route::middleware('auth')->group(function () {
+    Route::get('/', [MainController::class, "home"])->name("home");
 
-Route::prefix("carts")->group(function () {
-    Route::get("/", [CartController::class, "index"])->name("carts.index");
+    Route::prefix("carts")->group(function () {
+        Route::get("/", [CartController::class, "index"])->name("carts.index");
 
-    Route::put("/{cart}", [CartController::class, "update"])->name("carts.update");
-    Route::post("/{product}/products", [CartController::class, "store"])->name("carts.store");
+        Route::put("/{cart}", [CartController::class, "update"])->name("carts.update");
+        Route::post("/{product}/products", [CartController::class, "store"])->name("carts.store");
+    });
+
+    Route::prefix('settings')->group(function () {
+        Route::get('/', [UserController::class, 'edit'])->name('settings.edit.user');
+
+        Route::put('/', [UserController::class, 'update'])->name('settings.update.user');
+    });
+
+    Route::prefix('transactions')->group(function () {
+        Route::get('/', [TransactionController::class, 'show'])->name('transactions.pay');
+    });
 });
 
-Route::prefix('settings')->group(function () {
-    Route::get('/', [UserController::class, 'edit'])->name('settings.edit.user');
-});
 
 Route::prefix("auth")->group(function () {
-    Route::get('/login', [UserController::class, "login"])->name("auth.login.page");
-    Route::get('/register', [UserController::class, 'register'])->name("auth.register.page");
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', [UserController::class, "login"])->name("auth.login.page");
+        Route::get('/register', [UserController::class, 'register'])->name("auth.register.page");
+    });
     Route::get("/logout", [AuthController::class, "logout"])->name('auth.logout');
 
     Route::post("/register", [AuthController::class, "register"])->name("auth.register.store");
@@ -44,21 +55,26 @@ Route::prefix("auth")->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', [IndexController::class, 'index'])->name("admin.index");
-    Route::prefix('categories')->group(function () {
-        Route::get("/", [IndexController::class, 'category'])->name("admin.categories.index");
-        Route::get("/{category}", [CategoryController::class, 'show'])->name("admin.categories.show");
-        Route::get("/{category}/products", [CategoryController::class, 'products'])->name("admin.categories.products");
+    Route::middleware('auth.admin')->group(function () {
+        Route::get('/', [IndexController::class, 'index'])->name("admin.index");
+        Route::prefix('categories')->group(function () {
+            Route::get("/", [IndexController::class, 'category'])->name("admin.categories.index");
+            Route::get("/{category}", [CategoryController::class, 'show'])->name("admin.categories.show");
+            Route::get("/{category}/products", [CategoryController::class, 'products'])->name("admin.categories.products");
 
-        Route::post("/", [CategoryController::class, 'store'])->name("admin.categories.store");
-        Route::put("/{category}", [CategoryController::class, "update"])->name("admin.categories.update");
-        Route::delete("/{category}", [CategoryController::class, 'destroy'])->name("admin.categories.destroy");
-    });
-    Route::prefix("products")->group(function () {
-        Route::get("/", [IndexController::class, 'product'])->name("admin.products.index");
-        Route::get("/{product}", [ProductController::class, 'edit'])->name("admin.products.edit");
+            Route::post("/", [CategoryController::class, 'store'])->name("admin.categories.store");
+            Route::put("/{category}", [CategoryController::class, "update"])->name("admin.categories.update");
+            Route::delete("/{category}", [CategoryController::class, 'destroy'])->name("admin.categories.destroy");
+        });
+        Route::prefix("products")->group(function () {
+            Route::get("/", [IndexController::class, 'product'])->name("admin.products.index");
+            Route::get("/{product}", [ProductController::class, 'edit'])->name("admin.products.edit");
 
-        Route::post("/", [ProductController::class, "store"])->name("admin.products.store");
-        Route::put("/{product}", [ProductController::class, "update"])->name("admin.products.update");
+            Route::post("/", [ProductController::class, "store"])->name("admin.products.store");
+            Route::put("/{product}", [ProductController::class, "update"])->name("admin.products.update");
+        });
+        Route::prefix("users")->group(function () {
+            Route::get('/', [IndexController::class, 'user'])->name('admin.users.index');
+        });
     });
 });
