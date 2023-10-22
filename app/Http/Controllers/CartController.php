@@ -49,7 +49,8 @@ class CartController extends Controller
      */
     public function store(Request $request, Product $product)
     {
-        if(!Gate::check('is-user')) return redirect()->back()->withErrors("Belum login bro");
+        if(!Gate::check('is-user')) return redirect()->back()->withErrors(["message" => "Belum login bro"]);
+        
         $validator = Validator::make($request->all(), [
             "quantity" => "required|integer|min:1",
         ]);
