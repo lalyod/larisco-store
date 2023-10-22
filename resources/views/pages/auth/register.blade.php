@@ -18,9 +18,23 @@
                     </label>
                 @enderror
                 <div class="flex gap-3">
-                    <x-form.textbox label="Password" type="password" name="password" placeholder="Password" required />
-                    <x-form.textbox label="Kofirmasi Password" type="password" name="password_confirmation"
-                        placeholder="Konfirmasi Password" required />
+                    <div>
+                        <x-form.textbox label="Password" type="password" name="password" placeholder="Password" required />
+                        @error('password')
+                            <label class="label">
+                                <span class="label-text-alt text-error">{{ $message }}</span>
+                            </label>
+                        @enderror
+                    </div>
+                    <div>
+                        <x-form.textbox label="Kofirmasi Password" type="password" name="password_confirmation"
+                            placeholder="Konfirmasi Password" required />
+                        @error('password_confirmation')
+                            <label class="label">
+                                <span class="label-text-alt text-error">{{ $message }}</span>
+                            </label>
+                        @enderror
+                    </div>
                 </div>
                 <div class="flex justify-between items-center mt-5">
                     <span>Sudah punya akun? <a href="{{ route('auth.login.page') }}"
