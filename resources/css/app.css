@@ -45,3 +45,59 @@ table thead th:last-child {
     box-sizing: border-box;
     font-family: "Poppins";
 }
+
+@keyframes slide-in {
+    0%{
+        transform: translateX(100%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+
+@keyframes nav-slide-out {
+    0%{
+        transform: translate(0);
+    }
+    100%{
+        transform: translate(-100%);
+        display: none;
+    }
+}
+
+@keyframes nav-slide-in {
+    0%{
+        transform: translate(-100%);
+        display: block;
+    }
+    100%{
+        transform: translate(0);
+    }
+}
+
+@media (max-width: 950px) {
+    .nav-slide-out{
+        animation-duration: 500ms;
+        animation-name: nav-slide-out;
+        animation-fill-mode: forwards;
+    }
+    #total-menu{
+        width: 90% !important;
+    }
+    #sidebar-btn:hover header{
+        animation-duration: 500ms;
+        animation-name: nav-slide-in;
+        animation-fill-mode: forwards;
+    }
+}
+
+@media (max-width: 512px) {
+    #total-menu{
+        width: 75% !important;
+    }
+}
+
+.slide-in{
+    animation-duration: 500ms;
+    animation-name: slide-in;
+}
