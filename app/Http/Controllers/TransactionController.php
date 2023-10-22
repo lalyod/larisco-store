@@ -1,13 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Validator;
 
 class TransactionController extends Controller
 {
@@ -18,7 +14,6 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -39,7 +34,6 @@ class TransactionController extends Controller
      */
     public function store(Request $request, Product $product)
     {
-        
     }
 
     /**
@@ -48,7 +42,7 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaction $transaction)
+    public function show()
     {
         //
     }
@@ -73,7 +67,6 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        
     }
 
     /**
