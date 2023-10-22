@@ -1,4 +1,4 @@
-<header style="background-color: #F2FAF1;" class="h-screen w-72 shadow">
+<header style="background-color: #F2FAF1;" class="h-screen lg:w-72 w-62 nav-slide-out shadow">
     <div class="px-8 pt-10">
         <h3 class="font-bold text-2xl text-center">Admin</h3>
         <nav class="mt-10">
@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.index') }}" class="flex items-center gap-3">
+                    <a href="{{ route('admin.users.index') }}" class="flex items-center gap-3">
                         <div class="{{ $title == 'users' ? 'bg-green' : 'bg-white' }} p-3 rounded-lg shadow">
                             <img src="{{ asset('/img/user.svg') }}" alt="" class="{{ $title == 'users' ? 'filter-white' : '' }}">
                         </div>
