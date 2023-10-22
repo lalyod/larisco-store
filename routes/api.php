@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/provinces', [IndoRegionController::class, 'province']);
-Route::get('/provinces/{province}/regencies', [IndoRegionController::class, 'regency']);
+Route::get('/provinces/{province}/regencies', [IndoRegionController ::class, 'regency']);
 Route::get('/regencies/{regency}/districs', [IndoRegionController::class, 'distric']);
 Route::get('/districs/{distric}/villages', [IndoRegionController::class, 'village']);
