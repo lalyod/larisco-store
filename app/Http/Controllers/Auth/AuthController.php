@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -17,7 +19,7 @@ class AuthController extends Controller
             "password" => "required"
         ]);
 
-        if (Auth::attempt($validator->validated())) {
+        if (Auth::attempt($validator->validated(), true)) {
             $request->session()->regenerate();
 
             return redirect()->route("home");
@@ -28,7 +30,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register(Request $request)
+    public function register(Request $request): RedirectResponse
     {
         $validator = Validator::make($request->all(), [
             "name" => "required|string|min:3|unique:users",
@@ -42,5 +44,16 @@ class AuthController extends Controller
         User::create($validator->validated());
 
         return redirect()->route("auth.login.page")->with("success", "Berhasil register, silahkan login");
+    }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home');
     }
 }
