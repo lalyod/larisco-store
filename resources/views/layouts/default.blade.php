@@ -11,8 +11,13 @@
 
 <body>
     <div class="flex">
-        @include('components.sidebar')
-        <div class="w-full ml-72">
+        <div id="sidebar-btn" class="fixed z-30">
+            @include('components.sidebar')
+            <button class="font-bold text-2xl px-2 py-1 rounded-e-full mt-10" style="background-color: #F2FAF1;">
+                >
+            </button>
+        </div>
+        <div class="w-full lg:ml-72">
             @yield('content')
         </div>
     </div>
