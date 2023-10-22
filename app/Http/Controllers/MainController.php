@@ -17,6 +17,8 @@ class MainController extends Controller
             $products->whereHas('category', function ($query) use ($request) {
                 $query->where('name', $request->input('category'));
             });
+        } else if ($request->has('search')) {
+            $products->where('name', 'LIKE', '%' . $request->input('search') . '%');
         }
 
         $products = $products->get();
