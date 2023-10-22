@@ -16,7 +16,7 @@
         <div class="bg-slate-200 rounded-lg w-full p-5 mt-10">
             <div class="flex gap-5 items-center">
                 <img src="{{ Storage::url('public/products/' . $product->image) }}" alt="{{ $product->image }}"
-                    class="w-60 h-60 rounded-lg object-contain">
+                    class="w-60 h-60 max-sm:w-36 max-sm:h-36 rounded-lg object-contain">
                 <div class="w-full">
                     <x-form.textbox label="Nama" value="{{ $product->name }}" disabled />
                     <x-form.textarea label="Deskripsi" disabled>{{ $product->description }}</x-form.textarea>
