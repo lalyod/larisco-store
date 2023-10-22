@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container-admin mx-auto px-10">
-        <h3 class="font-bold pt-8 text-5xl">Dashboard</h3>
-        <div class="pt-10 font-bold grid grid-cols-3 gap-5">
+        <h3 class="font-bold pt-8 lg:text-5xl text-3xl">Dashboard</h3>
+        <div class="pt-10 font-bold lg:grid flex flex-col lg:grid-cols-3 lg:gap-5 gap-10">
             <div class="flex flex-col gap-4 p-7 rounded-lg shadow" style="background-color: #FFE8B2">
                 <div class="flex justify-between items-center">
                     <span class="text-2xl">10.000</span>
