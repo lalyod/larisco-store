@@ -81,3 +81,8 @@ function select(elementId, nextElement, label) {
             });
         });
 }
+
+function submit(id) {
+    const form = document.getElementById(id);
+    form.submit();
+}
