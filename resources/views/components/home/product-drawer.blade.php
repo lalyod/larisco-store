@@ -2,7 +2,7 @@
     <input id="my-drawer-{{ $product->id }}" type="checkbox" class="drawer-toggle" />
     <div class="drawer-side">
         <label for="my-drawer-{{ $product->id }}" aria-label="close sidebar" class="drawer-overlay"></label>
-        <ul class="menu p-4 w-96 min-h-full text-base-content" style="background-color: #F2FAF1;">
+        <ul class="menu p-4 w-96 max-sm:w-80 min-h-full text-base-content" style="background-color: #F2FAF1;">
             <div class="flex justify-center">
                 <img src="{{ Storage::url('public/products/' . $product->image) }}" alt=""
                     class="w-52 h-52 object-contain">
