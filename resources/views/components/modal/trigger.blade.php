@@ -1,2 +1,2 @@
-<button {{ $attributes->merge(['class' => 'btn']) }}
+<button type="button" {{ $attributes->merge(['class' => 'btn']) }}
     onclick="{{ $modal }}.showModal()">{{ $text }}</button>
