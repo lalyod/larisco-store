@@ -1,4 +1,4 @@
-<div class="card w-56 h-fit bg-base-100 shadow-xl">
+<div class="card lg:w-56 w-full h-fit bg-base-100 shadow-xl">
     <figure><img src="{{ Storage::url('public/products/' . $product->image) }}" alt="Shoes" class="w-44 p-3" /></figure>
     <div class="card-body pt-0">
         <h2 class="card-title">{{ $product->name }}</h2>
