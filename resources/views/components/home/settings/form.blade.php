@@ -1,22 +1,18 @@
 <x-form.group action="{{ route('settings.update.user') }}" method="POST" id="main-form">
     @method('PUT')
     <div class="flex flex-col gap-5 mt-5">
-        <form action="{{ route('settings.update.user') }}" id="change-image" method="POST">
-            <div class="flex flex-col rounded-lg items-center">
-                @csrf
-                @method('PUT')
-                <div class="w-32 h-32 overflow-hidden rounded-full bg-slate-200">
-                    <img src="{{ Storage::url('public/users/' . $user->image) }}" alt=""
-                        class="w-32 h-32 object-cover">
-                </div>
-                <span onclick="chooseImage('file-input')" class="btn btn-neutral mt-3">Pilih Gambar</span>
-                <input type="file" id="file-input" name="image" value="" onchange="submit('change-image')"
-                    placeholder="" class="hidden">
+        <div class="flex flex-col rounded-lg items-center">
+            <div class="w-32 h-32 overflow-hidden rounded-full bg-slate-200">
+                <img src="{{ Storage::url('public/users/' . $user->image) }}" alt=""
+                    class="w-32 h-32 object-cover">
             </div>
-        </form>
+            <span onclick="chooseImage('file-input')" class="btn btn-neutral mt-3">Pilih Gambar</span>
+            <input type="file" id="file-input" name="image" value="" onchange="submit('main-form')"
+                placeholder="" class="hidden">
+        </div>
         <div class="w-full">
             <x-form.textbox label="Name" value="{{ $user->name }}" name="name" />
-            <div class="flex gap-5">
+            <div class="flex gap-5 max-sm:flex-col">
                 <x-form.textbox label="Email" type="email" value="{{ $user->email }}" name="email" />
                 <x-form.textbox label="Nomor Telepon" type="number" value="{{ $user->phone_number }}"
                     name="phone_number" />
