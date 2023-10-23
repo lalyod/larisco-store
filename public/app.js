@@ -86,3 +86,22 @@ function submit(id) {
     const form = document.getElementById(id);
     form.submit();
 }
+
+function buttonHideAlertSuccess() {
+    const alert = document.getElementById("alert-success");
+
+    if (!alert) return;
+
+    alert.classList.remove("slide-in");
+    alert.classList.add("slide-out");
+}
+
+function hideAlertSuccess() {
+    setTimeout(() => {
+        buttonHideAlertSuccess();
+    }, 5000);
+}
+
+addEventListener("DOMContentLoaded", () => {
+    hideAlertSuccess();
+});
