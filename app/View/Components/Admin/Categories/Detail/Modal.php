@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Admin\Categories;
+namespace App\View\Components\Admin\Categories\Detail;
 
 use Illuminate\View\Component;
 
-class ModalUpdate extends Component
+class Modal extends Component
 {
     /**
      * Create a new component instance.
@@ -13,8 +13,7 @@ class ModalUpdate extends Component
      */
     public function __construct(
         public $category
-    )
-    {
+    ) {
         //
     }
 
@@ -25,6 +24,6 @@ class ModalUpdate extends Component
      */
     public function render()
     {
-        return view('components.admin.categories.modal-update');
+        return view('components.admin.categories.detail.modal');
     }
 }

@@ -13,7 +13,8 @@ class PaymentModal extends Component
      */
     public function __construct(
         public $user,
-        public $subtotal
+        public $subtotal,
+        public $cart
     )
     {
         //

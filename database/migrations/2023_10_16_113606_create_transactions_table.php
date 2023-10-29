@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer("quantity");
             $table->double("total");
-            $table->boolean("checkout")->nullable();
+            $table->string('snap_token')->nullable();
             $table->foreignId("product_id")->references("id")->on("products");
             $table->foreignId("user_id")->references("id")->on("users");
             $table->timestamps();

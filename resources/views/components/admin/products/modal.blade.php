@@ -1,7 +1,10 @@
 <x-modal.index title="Tambah Produk" id="products_add">
     <x-form.group action="{{ route('admin.products.store') }}" method="POST">
         <div class="h-96 overflow-y-hidden">
-            <x-form.filebox label="Gambar" name="image" required />
+            <div class="flex justify-between gap-4">
+                <x-form.filebox label="Gambar" name="image" required />
+                <x-form.textbox label="Berat" type="number" name="weight" placeholder="Berat kg" required />
+            </div>
             <div class="flex justify-between gap-4">
                 <x-form.textbox label="Nama" name="name" placeholder="Nama" required />
                 <x-form.textbox label="Harga" type="number" name="price" placeholder="Harga" required />

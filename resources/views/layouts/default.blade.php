@@ -22,6 +22,7 @@
         </div>
     </div>
 
+    <script src="{{ asset('snap.js') }}" data-client-key="{{ config('midtrans.client_key') }}"></script>
     <script src="{{ asset('/app.js') }}"></script>
 </body>
 

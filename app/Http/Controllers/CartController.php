@@ -16,7 +16,7 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (!Gate::check('is-user')) return redirect()->back()->withErrors("Login dulu bro");
 
@@ -49,27 +49,34 @@ class CartController extends Controller
      */
     public function store(Request $request, Product $product)
     {
-        if(!Gate::check('is-user')) return redirect()->back()->withErrors(["message" => "Belum login bro"]);
-        
+        if (!Gate::check('is-user')) return redirect()->back()->withErrors(["message" => "Belum login bro"]);
+
         $validator = Validator::make($request->all(), [
             "quantity" => "required|integer|min:1",
         ]);
 
         if ($validator->fails()) return redirect()->back()->withErrors($validator->errors());
 
-        $total = $product->price * $request->quantity;
-        $user = Auth::user();
+        $cart = Cart::where('product_id', $product->id)->first();
+        if (!empty($cart)) {
+            $this->update($request, $cart);
 
-        $cart = [
-            "quantity" => $request->quantity,
-            "total" => $total,
-            "product_id" => $product->id,
-            "user_id" => $user->id
-        ];
+            return redirect()->route('carts.index');
+        } else {
+            $total = $product->price * $request->quantity;
+            $user = Auth::user();
 
-        Cart::create($cart);
+            $cart = [
+                "quantity" => $request->quantity,
+                "total" => $total,
+                "product_id" => $product->id,
+                "user_id" => $user->id
+            ];
 
-        return redirect()->back();
+            Cart::create($cart);
+
+            return redirect()->back();
+        }
     }
 
     /**
@@ -115,6 +122,11 @@ class CartController extends Controller
             $cart->save();
 
             return redirect()->back();
+        } else {
+            $cart->quantity += $request->quantity;
+            $cart->save();
+
+            return redirect()->route('carts.index');
         }
     }
 

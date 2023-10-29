@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\IndoRegionController;
+use App\Http\Controllers\Api\RajaOngkirController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/provinces', [IndoRegionController::class, 'province']);
-Route::get('/provinces/{province}/regencies', [IndoRegionController ::class, 'regency']);
-Route::get('/regencies/{regency}/districs', [IndoRegionController::class, 'distric']);
-Route::get('/districs/{distric}/villages', [IndoRegionController::class, 'village']);
+Route::prefix('rajaongkir')->group(function () {
+    Route::prefix('provinces')->group(function () {
+        Route::get('/', [RajaOngkirController::class, 'provinces']);
+        Route::get('/{id}', [RajaOngkirController::class, 'province']);
+    });
+    Route::prefix('cities')->group(function () {
+        Route::get('/', [RajaOngkirController::class, 'cities']);
+        Route::get('/{id}', [RajaOngkirController::class, 'city']);
+        Route::get('/{province}/province', [RajaOngkirController::class, 'province_city']);
+    });
+    Route::post('/cost', [RajaOngkirController::class, 'cost']);
+});
+
+Route::get('/midtrans/order/{order}/check', [TransactionController::class, 'show']);

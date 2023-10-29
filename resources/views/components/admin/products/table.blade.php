@@ -9,9 +9,9 @@
             <td>{{ $product->name }}</td>
             <td class="flex gap-5">
                 <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-info text-white">Detail</a>
-                <x-form.delete-button text="DELETE" />
+                <x-form.delete-button text="DELETE" action="{{ route('admin.products.delete', $product->id) }}" />
             </td>
-        </tr>
+    </tr>
     @empty
         <tr>
             <td colspan="100%" class="text-center">Data tidak ditemukan</td>

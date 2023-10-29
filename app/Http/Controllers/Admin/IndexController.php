@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -64,6 +65,14 @@ class IndexController extends Controller
         return view('pages.admin.users.index', [
             'title' => 'users',
             'users' => $users
+        ]);
+    }
+
+    public function detail_user(User $user): View
+    {
+        return view('pages.admin.categories.detail', [
+            'title' => 'users',
+            'user' => $user
         ]);
     }
 }

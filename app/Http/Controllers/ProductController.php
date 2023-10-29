@@ -42,6 +42,7 @@ class ProductController extends Controller
             "image" => "required|image|mimes:jpeg,jpg,png,svg",
             "name" => "required|string|min:3",
             "description" => "string|min:4|nullable",
+            "weight" => "required|decimal:0,2|min:10",
             "price" => "required|integer|min:500",
             "stock" => "required|integer|min:1",
             "category_id" => "required|exists:categories,id"
@@ -56,6 +57,7 @@ class ProductController extends Controller
             "image" => $image->hashName(),
             "name" => $request->name,
             "description" => $request->description,
+            "weight" => $request->weight,
             "price" => $request->price,
             "stock" => $request->stock,
             "category_id" => $request->category_id
@@ -121,6 +123,7 @@ class ProductController extends Controller
                 "image" => $image->hashName(),
                 "name" => $request->name,
                 "description" => $request->description,
+                "weight" => $request->weight,
                 "price" => $request->price,
                 "stock" => $request->stock,
                 "category_id" => $request->category_id,
@@ -142,6 +145,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->back()->with('success', 'Berhasil menghapus produk');
     }
 }

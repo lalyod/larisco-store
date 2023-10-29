@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\UserController;
@@ -21,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [MainController::class, "home"])->name("home");
 Route::middleware('auth')->group(function () {
-    Route::get('/', [MainController::class, "home"])->name("home");
 
     Route::prefix("carts")->group(function () {
         Route::get("/", [CartController::class, "index"])->name("carts.index");
@@ -34,11 +35,13 @@ Route::middleware('auth')->group(function () {
     Route::prefix('settings')->group(function () {
         Route::get('/', [UserController::class, 'edit'])->name('settings.edit.user');
 
+        Route::post('/address', [AddressController::class, 'store'])->name('settings.store.address');
         Route::put('/', [UserController::class, 'update'])->name('settings.update.user');
     });
 
     Route::prefix('transactions')->group(function () {
-        Route::get('/', [TransactionController::class, 'show'])->name('transactions.pay');
+        Route::post('/pay', [TransactionController::class, 'create'])->name('transactions.pay');
+        Route::get('/success', [TransactionController::class, 'edit'])->name('transactions.edit');
     });
 });
 
@@ -72,9 +75,11 @@ Route::prefix('admin')->group(function () {
 
             Route::post("/", [ProductController::class, "store"])->name("admin.products.store");
             Route::put("/{product}", [ProductController::class, "update"])->name("admin.products.update");
+            Route::delete('/{product}', [ProductController::class, 'destroy'])->name('admin.products.delete');
         });
         Route::prefix("users")->group(function () {
             Route::get('/', [IndexController::class, 'user'])->name('admin.users.index');
+            Route::get('/{user}', [IndexController::class, 'detail_user'])->name('admin.users.detail');
         });
     });
 });

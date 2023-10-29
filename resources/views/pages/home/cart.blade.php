@@ -9,9 +9,9 @@
         <div>
             <h3 class="text-2xl font-bold">Cart</h3>
         </div>
-        <x-home.cart.payment-modal :user=$user :subtotal=$subtotal />
-        <div class="mt-10 max-sm:flex max-sm:flex-col max-sm:gap-5">
+        <div class="mt-10 flex flex-col gap-5">
             @foreach ($carts as $cart)
+                <x-home.cart.payment-modal :user=$user :subtotal=$subtotal :cart=$cart />
                 <x-home.cart.card :cart=$cart />
             @endforeach
         </div>

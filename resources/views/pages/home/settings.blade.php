@@ -1,13 +1,13 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="px-10 mt-10">
+    <div class="px-10 mt-10" onloadeddata="tes()">
         <div>
             <h3 class="text-2xl font-bold">Pengaturan</h3>
         </div>
         <x-alert.error :errors=$errors />
         @if (session()->has('success'))
-            <x-alert.success text="{{ session()->get('success') }}" key="1" />
+            <x-alert.success text="{{ session()->get('success') }}" />
         @endif
         <x-home.settings.modal :provinces=$provinces />
         <div class="bg-white p-5 shadow my-10 rounded-lg">

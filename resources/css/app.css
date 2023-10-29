@@ -60,7 +60,7 @@ table thead th:last-child {
         transform: translateX(0);
     }
     100%{
-        transform: translateX(150%);
+        transform: translateX(500%);
     }
 }
 
@@ -86,7 +86,7 @@ table thead th:last-child {
 
 @media (max-width: 950px) {
     .nav-slide-out{
-        animation-duration: 500ms;
+        animation-duration: 1000ms;
         animation-name: nav-slide-out;
         animation-fill-mode: forwards;
     }

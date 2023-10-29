@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="px-10 mt-9">
-        <x-admin.categories.detail.modal-update :category=$category />
+        <x-admin.categories.detail.modal :category=$category />
         <div class="flex justify-between">
             <h3 class="text-2xl font-bold">Kategori Detail</h3>
             <x-modal.trigger text="Edit" modal="categories_update" class="btn-info text-white" />

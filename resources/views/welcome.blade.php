@@ -10,7 +10,7 @@
         </div>
         <x-alert.error :errors=$errors />
         <div class="mt-10">
-            <h3 class="font-bold text-2xl ">Semua Produk</h3>
+            <h3 class="font-bold text-2xl">Semua Produk</h3>
             <div class="mt-5 lg:grid gap-10 flex flex-col items-center lg:grid-cols-4">
                 @foreach ($products as $product)
                     <x-home.product-card :product=$product />

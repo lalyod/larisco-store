@@ -3,7 +3,7 @@
     <div class="card-body pt-0">
         <h2 class="card-title">{{ $product->name }}</h2>
         <div class="card-actions justify-between flex items-center">
-            <span class="font-bold">{{ number_format($product->price) }}</span>
+            <span class="font-bold">Rp. {{ number_format($product->price) }}</span>
             <label for="my-drawer-{{ $product->id }}" class="drawer-button btn btn-neutral text-2xl"
                 onclick="setPrice({{ $product->price }})">+</label>
         </div>

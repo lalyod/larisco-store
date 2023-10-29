@@ -1,6 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
+    <x-alert.error :errors=$errors />
     <div class="flex justify-center items-center h-screen">
         <div class="bg-slate-200 flex flex-col gap-4 p-5 rounded-lg w-96">
             <h3 class="text-2xl font-bold text-center">Login</h3>

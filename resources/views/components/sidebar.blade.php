@@ -1,6 +1,8 @@
 <header style="background-color: #F2FAF1;" class="h-screen lg:w-72 w-62 nav-slide-out shadow" id="sidebar">
     <div class="px-8 pt-10">
-        <h3 class="font-bold text-center text-2xl">{{ ucfirst(Auth::user()->name) }}</h3>
+        @auth
+            <h3 class="font-bold text-center text-2xl">{{ ucfirst(Auth::user()->name) }}</h3>
+        @endauth
         <nav class="mt-8">
             <ul class="font-bold flex flex-col gap-5">
                 <li>

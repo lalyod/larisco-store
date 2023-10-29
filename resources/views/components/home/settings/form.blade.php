@@ -17,14 +17,23 @@
                 <x-form.textbox label="Nomor Telepon" type="number" value="{{ $user->phone_number }}"
                     name="phone_number" />
             </div>
-            @if (empty($user->address))
+            <div class="flex flex-col gap-3">
                 <label class="label">Alamat</label>
-                <x-modal.trigger text="+ Alamat Baru" modal="setting_address" class="w-full btn btn-info text-white" />
-            @else
-                <x-form.textarea label="Alamat" name="address">
-                    {{ $user->address }}
-                </x-form.textarea>
-            @endif
+                @if (empty($user->addresses))
+                    <x-modal.trigger text="+ Alamat Baru" modal="setting_address"
+                        class="w-full btn btn-info text-white" />
+                @else
+                    @foreach ($user->addresses as $address)
+                        <div class="bg-white shadow p-3 rounded-lg flex flex-col">
+                            <span>{{ $address->province }}</span>
+                            <span>{{ $address->city }}</span>
+                            <span>{{ $address->postal_code }}</span>
+                        </div>
+                    @endforeach
+                    <x-modal.trigger text="+ Alamat Baru" modal="setting_address"
+                        class="w-full btn btn-info text-white" />
+                @endif
+            </div>
         </div>
         <div>
             <label for="gender-radio" class="label">Jenis Kelamin</label>
