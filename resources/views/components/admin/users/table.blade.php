@@ -10,7 +10,6 @@
             <td>{{ $user->email }}</td>
             <td>{{ $user->role }}</td>
             <td class="flex gap-5">
-                <a href="{{ route('admin.users.detail', $user->id) }}" class="btn btn-info text-white">detail</a>
                 <x-form.delete-button text="DELETE" />
             </td>
         </tr>
