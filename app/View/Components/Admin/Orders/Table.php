@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Home\Cart;
+namespace App\View\Components\Admin\Orders;
 
 use Illuminate\View\Component;
 
-class PaymentModal extends Component
+class Table extends Component
 {
     /**
      * Create a new component instance.
@@ -12,9 +12,7 @@ class PaymentModal extends Component
      * @return void
      */
     public function __construct(
-        public $user,
-        public $subtotal,
-        public $cart
+        public $transactions
     )
     {
         //
@@ -27,6 +25,6 @@ class PaymentModal extends Component
      */
     public function render()
     {
-        return view('components.home.cart.payment-modal');
+        return view('components.admin.orders.table');
     }
 }

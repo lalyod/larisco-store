@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Transaction;
 use App\Models\User;
+use App\Services\Midtrans\Midtrans;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,11 +70,13 @@ class IndexController extends Controller
         ]);
     }
 
-    public function detail_user(User $user): View
+    public function orders(): View
     {
-        return view('pages.admin.categories.detail', [
-            'title' => 'users',
-            'user' => $user
+        $transactions = Transaction::all();
+
+        return view('pages.admin.orders.index', [
+            'title' => 'orders',
+            "transactions" => $transactions
         ]);
     }
 }

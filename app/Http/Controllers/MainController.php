@@ -10,7 +10,7 @@ class MainController extends Controller
 {
     public function home(Request $request)
     {
-        $categories = Category::all();
+        $categories = Category::with('products')->get();
         $products = Product::query();
 
         if ($request->has('category')) {

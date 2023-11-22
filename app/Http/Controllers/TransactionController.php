@@ -82,7 +82,7 @@ class TransactionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($order)
-    {
+    { 
         try {
             \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
             $status = MidtransTransaction::status($order);

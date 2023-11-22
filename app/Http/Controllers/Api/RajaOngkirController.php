@@ -57,7 +57,7 @@ class RajaOngkirController extends Controller
     public function cost(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'origin' => 'requried|integer',
+            'origin' => 'required|integer',
             'destination' => 'required|integer',
             'weight' => 'required|integer|min:10',
             'courier' => "required|in:jne,jnt|string"
