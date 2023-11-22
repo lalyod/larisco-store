@@ -81,5 +81,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/', [IndexController::class, 'user'])->name('admin.users.index');
             Route::get('/{user}', [IndexController::class, 'detail_user'])->name('admin.users.detail');
         });
+        Route::prefix('orders')->group(function () {
+            Route::get('/', [IndexController::class, 'orders'])->name('admin.orders.index');
+        });
     });
 });
