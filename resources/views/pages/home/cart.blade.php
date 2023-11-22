@@ -11,7 +11,7 @@
         </div>
         <div class="mt-10 flex flex-col gap-5">
             @foreach ($carts as $cart)
-                <x-home.cart.payment-modal :user=$user :subtotal=$subtotal :cart=$cart />
+                <x-home.cart.payment.modal :user=$user :subtotal=$subtotal :cart=$cart />
                 <x-home.cart.card :cart=$cart />
             @endforeach
         </div>
