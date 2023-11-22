@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.index') }}" class="flex items-center gap-3">
+                    <a href="{{ route('admin.orders.index') }}" class="flex items-center gap-3">
                         <div class="{{ $title == 'orders' ? 'bg-green' : 'bg-white' }} p-3 rounded-lg shadow">
                             <img src="{{ asset('/img/shopping-bag.svg') }}" alt="" class="{{ $title == 'orders' ? 'filter-white' : '' }}">
                         </div>
